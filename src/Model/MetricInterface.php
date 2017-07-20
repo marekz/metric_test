@@ -3,10 +3,11 @@
 namespace SBG\App\Model;
 
 use SBG\App\Entity\Metrics;
+use SBG\App\Model\MetricCompareStrategy;
 
 interface MetricInterface {
 // 1   download current data from source
 // 2   save current date from source to database
     
-    public function resultCompare($metric, $cmpStrategy);
+    public function resultCompare($metric, MetricCompareStrategy $cmpStrategy);
 }
