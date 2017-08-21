@@ -5,13 +5,23 @@ namespace SBG\App\Model;
 use SBG\App\Model\MetricPreviousInterface as MPI;
 
 class MetricPrevious implements MPI {
-    //put your code here
-    public function current($metric) {
-        return $metric;
+    
+    private $currentMetric;
+    private $lastMetric;
+    
+    public function current($currentMetric) {
+        return $this->currentMetric = $currentMetric;
     }
 
-    public function last($metric) {
-        return $metric;
+    public function last($lastMetric) {
+        return $this->lastMetric = $lastMetric;
     }
 
+    public function alertWhenCurrentIsLessLast() {
+        if($this->currentMetric < $this->lastMetric) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

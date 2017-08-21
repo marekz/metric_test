@@ -1,0 +1,11 @@
+@startuml
+class MetricInterface {
+    string data
+--
+    resultCompare()
+-- Zobowiązanie --
+Interfejs klasy metryk
+}
+
+MetricInterface --|> Metric
+@enduml
