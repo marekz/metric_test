@@ -1,6 +1,6 @@
 <?php
 
-namespace SBG\App\Model;
+namespace SBG\App\Model\Interfaces;
 
 interface MetricCompareStrategyInterface {
     /**

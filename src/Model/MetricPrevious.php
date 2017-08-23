@@ -2,7 +2,7 @@
 
 namespace SBG\App\Model;
 
-use SBG\App\Model\MetricPreviousInterface as MPI;
+use SBG\App\Model\Interfaces\MetricPreviousInterface as MPI;
 
 class MetricPrevious implements MPI {
     

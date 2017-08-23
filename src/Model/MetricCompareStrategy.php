@@ -2,7 +2,7 @@
 
 namespace SBG\App\Model;
 
-use SBG\App\Model\MetricCompareStrategyInterface;
+use SBG\App\Model\Interfaces\MetricCompareStrategyInterface;
 
 class MetricCompareStrategy implements MetricCompareStrategyInterface {
 

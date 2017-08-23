@@ -1,11 +1,83 @@
 @startuml
-class MetricInterface {
-    string data
---
+interface MetricInterface {
     resultCompare()
--- Zobowiązanie --
-Interfejs klasy metryk
 }
 
-MetricInterface --|> Metric
+class Metric {
+    string currentValue
+    string previousValue
+--
+    resultCompare()
+--
+-- Sprawdza status metryki -- 
+}
+
+interface DataSetInterface {
+    getValue()
+    getDate()
+}
+
+class DataSet {
+    string value
+    data data
+--
+    getValue()
+    getDate()
+-- Zobowiązanie --
+Pobiera zestaw danych 
+do porównania
+}
+
+DataSetInterface <|.. DataSet
+
+MetricInterface <|.. Metric
+
+
+Metric ..> DataSet
+
+interface ResultCompareInterface {
+    resultCompare()
+    sendNotification()
+}
+
+class ResultCompare {
+    array dataSet
+--
+    resultCompare()
+    sendNotification()
+-- Zobowiązanie --
+Porównuje aktualny zestaw danych
+z danymi z poprzedniego okresu
+}
+
+ResultCompareInterface <|-- ResultCompare
+
+ResultCompare <.. Metric
+
+interface NotificationInterface {
+    sendNotification()
+}
+
+class Notification {
+string mailTo
+string message
+string comparedMetrics
+--
+sendNotification()
+-- Zobowiązanie --
+Wysyła powiadomienia
+w przypadku
+gdy metryki pogarszają się
+}
+
+NotificationInterface <|.. Notification
+
+Notification <.. ResultCompare
+
+enum Result{
+    LESS
+    EQ
+    GRATER
+}
+
 @enduml
