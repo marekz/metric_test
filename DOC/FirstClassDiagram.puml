@@ -1,13 +1,14 @@
 @startuml
+
 interface MetricInterface {
-    resultCompare()
+    resultCMP()
 }
 
 class Metric {
     string currentValue
     string previousValue
 --
-    resultCompare()
+    resultCMP()
 --
 -- Sprawdza status metryki -- 
 }
@@ -28,15 +29,37 @@ Pobiera zestaw danych
 do porównania
 }
 
-DataSetInterface <|.. DataSet
+interface DailyDateInterface {
+    getValue()
+    getDate()
+    getImportType()
+}
 
-MetricInterface <|.. Metric
+class DailyDate {
+    string value
+    string date
+    importType
+    getValue()
+    getDate()
+    getImportType()
+-- Zobowiązanie --
+Pobiera dane ze źródła
+i zapisuje do bazy
+}
 
+DailyDate -right-|> DailyDateInterface
 
-Metric ..> DataSet
+DataSet .up.> DailyDate
+
+MetricInterface <|.right. Metric
+
+DataSetInterface <|.left. DataSet
+
+Metric .right.> DataSet
 
 interface ResultCompareInterface {
     resultCompare()
+    saveResultCompare()
     sendNotification()
 }
 
@@ -45,14 +68,42 @@ class ResultCompare {
 --
     resultCompare()
     sendNotification()
+    saveResultCompare()
 -- Zobowiązanie --
 Porównuje aktualny zestaw danych
 z danymi z poprzedniego okresu
 }
 
-ResultCompareInterface <|-- ResultCompare
+interface SaveResultCompareInterface {
+    setCurValue()
+    setPrevValue()
+    setResultCompare()
+    setResultCompareDate()
+}
 
-ResultCompare <.. Metric
+class SaveResultCompare {
+    string curValue
+    string prevValue
+    string resultCompare
+    date resultCompareDate
+--
+    setCurValue()
+    setPrevValue()
+    setResultCompare()
+    setResultCompareDate()
+-- Zobowiązanie --
+Zapisuje do bazy:
+porównywane dane
+status porównania
+}
+
+SaveResultCompare -left-|> SaveResultCompareInterface
+
+ResultCompareInterface <|-left- ResultCompare
+
+ResultCompare <.down. Metric
+
+ResultCompare .down.> SaveResultCompare
 
 interface NotificationInterface {
     sendNotification()
@@ -70,14 +121,33 @@ w przypadku
 gdy metryki pogarszają się
 }
 
-NotificationInterface <|.. Notification
+Notification <.down. ResultCompare
 
-Notification <.. ResultCompare
+NotificationInterface <|.left. Notification
 
+interface CompareMethodInterface {
+    compareMethod()
+}
+
+class CompareMethod {
+    string method
+--
+    compareMethod()
+-- Zobowiązanie --
+Zwraca dostępne 
+metody porównania
+}
+
+CompareMethod -left-|> CompareMethodInterface
+
+ResultCompare .left.> CompareMethod
+
+/'
 enum Result{
     LESS
     EQ
-    GRATER
+    GRATER    
 }
+'/
 
 @enduml
