@@ -1,2 +1,73 @@
 @startuml
+
+interface MetricInterface {
+    getMetricData()
+}
+
+class Metric {
+    Object metricData
+--
+    getMetricData()
+-- Zobowiązanie --
+Pobiera zestaw danych
+}
+
+Metric -up-|> MetricInterface
+
+interface MetrScallarReprezentInterface {
+convertDataSet()
+}
+
+class MetrScallarReprezent {
+Object dataSet
+--
+convertDataSet()
+-- Zobowiązanie --
+Zwraca skonwertowaną, 
+przeliczoną, przetworzoną 
+wartość liczbową
+umożlwiającą wykonanie porównania
+}
+
+MetrScallarReprezent -up-|> MetrScallarReprezentInterface
+
+Metric .right.> MetrScallarReprezent
+
+interface DataSetInterface {
+    getValue()
+    getDate()
+}
+
+class DataSet {
+    Object value
+    Object data
+--
+    getData()
+-- Zobowiązanie --
+Pobiera zestaw danych 
+do porównania
+}
+
+DataSet -up-|> DataSetInterface
+
+MetrScallarReprezent .right.> DataSet
+
+interface ResultCompareInterface {
+    resultCompare()
+}
+
+class ResultCompare {
+    array dataSet
+--
+    resultCompare()
+-- Zobowiązanie --
+Porównuje aktualny zestaw danych
+z danymi z poprzedniego okresu
+i zwraca informacje o wzroście, spadku 
+lub utrzymaniu obecnego stanu
+}
+
+ResultCompare -right-|> ResultCompareInterface
+
+Metric .down.> ResultCompare
 @enduml
