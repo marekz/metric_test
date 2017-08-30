@@ -1,16 +1,26 @@
 @startuml
 
+class Import {
+    string source
+    string importName
+    
+}
+
 interface MetricInterface {
     resultCMP()
+    getDataSet()
 }
 
 class Metric {
-    string currentValue
-    string previousValue
+    array currentValue
+    array previousValue
 --
     resultCMP()
---
--- Sprawdza status metryki -- 
+    getDataSet()
+-- Zobowiązanie --
+Pobiera zestaw danych
+i wywołuje metodę 
+porównującą dane
 }
 
 interface DataSetInterface {
