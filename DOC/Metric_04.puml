@@ -50,25 +50,29 @@ DataSet -left-|> DataSetInterface
 
 MetrScallarReprezent .down.> DataSet
 
-interface ResultCompareInterface {
-    resultCompare()
+Metric .right.> MetrScallarReprezent
+
+/'
+interface DailyDateInterface {
+    getValue()
+    getDate()
+    getImportType()
 }
 
-class ResultCompare {
-    dataSet
---
-    resultCompare()
+class DailyDate {
+    string value
+    string date
+    importType
+    getValue()
+    getDate()
+    getImportType()
 -- Zobowiązanie --
-Porównuje aktualny zestaw danych
-z danymi z poprzedniego okresu
-i zwraca informacje o wzroście, spadku 
-lub utrzymaniu obecnego stanu
+Pobiera dane ze źródła
+i zapisuje do bazy
 }
 
-ResultCompare -up-|> ResultCompareInterface
+DailyDate -right-|> DailyDateInterface
 
-Metric .right.> ResultCompare
-
-ResultCompare .right.> MetrScallarReprezent
-
+DataSet .right.> DailyDate
+'/
 @enduml
