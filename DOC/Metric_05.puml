@@ -1,0 +1,21 @@
+@startuml
+
+interface MetricInterface {
+    getMetricStatus()
+}
+
+class Metric {
+    metricStatus
+--
+    getMetricStatus()
+-- Zobowiązanie --
+Zwraca status metryki
+}
+
+Metric -up-|> MetricInterface
+
+interface MetrScallarReprezentInterface {
+convertDataSet()
+}
+
+@enduml
