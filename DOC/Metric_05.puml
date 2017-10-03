@@ -14,8 +14,19 @@ Zwraca status metryki
 
 Metric -up-|> MetricInterface
 
-interface MetrScallarReprezentInterface {
-convertDataSet()
+interface MetricCompareInterface {
+compareData()
 }
+
+class MetricCompare {
+currentdata
+previousData
+--
+compareData()
+}
+
+MetricCompare -up-|> MetricCompareInterface
+
+MetricCompare -right-> Metric
 
 @enduml
