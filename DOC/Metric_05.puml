@@ -1,13 +1,15 @@
 @startuml
 
 interface MetricInterface {
-    getMetricStatus()
+    presentMetricStatus()
+    getCompareResult()
 }
 
 class Metric {
     metricStatus
 --
-    getMetricStatus()
+    presentMetricStatus()
+    getCompareResult()
 -- Zobowiązanie --
 Zwraca status metryki
 }
@@ -19,7 +21,7 @@ compareData()
 }
 
 class MetricCompare {
-currentdata
+currentData
 previousData
 --
 compareData()
@@ -27,6 +29,25 @@ compareData()
 
 MetricCompare -up-|> MetricCompareInterface
 
-MetricCompare -right-> Metric
+Metric -right-> MetricCompare
+
+interface MetricScallarReprezentInterface {
+convertDataSet()
+}
+
+class MetricScallarReprezent {
+dataSet
+--
+convertDataSet()
+-- Zobowiązanie --
+Zwraca skonwertowaną, 
+przeliczoną, przetworzoną 
+wartość liczbową
+umożlwiającą wykonanie porównania
+}
+
+MetricScallarReprezent -up-|> MetricScallarReprezentInterface
+
+MetricCompare -right-> MetricScallarReprezent
 
 @enduml

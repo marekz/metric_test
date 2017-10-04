@@ -5,7 +5,7 @@ namespace SBG\tests\App\Model;
 use PHPUnit_Framework_TestCase as TestCase;
 use SBG\App\Model\MetricPrevious;
 
-class MetricPreviousTest extends TestCase {
+class OUT_MetricPreviousTest extends TestCase {
 
     /**
      * @test

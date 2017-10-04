@@ -2,9 +2,9 @@
 
 namespace SBG\App\Model;
 
-use SBG\App\Model\Interfaces\MetricCompareStrategyInterface;
+use SBG\App\Model\Interfaces\OUT_MetricCompareStrategyInterface;
 
-class MetricCompareStrategy implements MetricCompareStrategyInterface {
+class OUT_MetricCompareStrategy implements OUT_MetricCompareStrategyInterface {
 
     private $strategy;
     

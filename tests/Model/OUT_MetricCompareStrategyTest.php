@@ -8,7 +8,7 @@ use SBG\App\Model\MetricCompareStrategy;
 /**
  * @author mzdybel
  */
-class MetricCompareStrategyTest extends TestCase {
+class OUT_MetricCompareStrategyTest extends TestCase {
     
     /**
      * @test
