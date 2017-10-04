@@ -17,8 +17,12 @@ class MetricDataCompareTest extends TestCase {
      * if current date is equal to previous data then return 0
      */
     public function returnTruIfComparedDataIsEqual(){
-        $compareTest = new MetricCompare(1, 1);
-        $this->assertEquals(0, $compareTest->compareData());
+        $compareTest = new MetricCompare("numeric");
+        if($compareTest->compareData() == 0){
+            $this->assertEquals(0, $compareTest->compareData());
+        }else {
+            $this->assertNotEquals(0, $compareTest->compareData());
+        }
     }
 
     /**
@@ -26,8 +30,14 @@ class MetricDataCompareTest extends TestCase {
      * if current date is worst then previous data then return -1
      */
     public function returnWorsIfCurrentDataIsWorsThenPrevious(){
-        $compareTest = new MetricCompare(0, 1);
-        $this->assertEquals(-1, $compareTest->compareData());
+        $compareTest = new MetricCompare("numeric");
+        if($compareTest->compareData() == -1) {
+            $this->assertEquals(-1, $compareTest->compareData());
+            
+        } else {
+            $this->assertNotEquals(-1, $compareTest->compareData());
+            
+        }
     }
 
     /**
@@ -35,7 +45,13 @@ class MetricDataCompareTest extends TestCase {
      * if current date is better then previous data then return 1
      */
     public function returnBetterIfCurrentDataIsBeterThenPrevious(){
-        $compareTest = new MetricCompare(1, 0);
-        $this->assertEquals(1, $compareTest->compareData());
+        $compareTest = new MetricCompare("numeric");
+        if($compareTest->compareData() == 1) {
+            $this->assertEquals(1, $compareTest->compareData());
+            
+        } else {
+            $this->assertNotEquals(1, $compareTest->compareData());
+            
+        }
     }
 }

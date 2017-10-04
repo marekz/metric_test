@@ -9,12 +9,10 @@ use SBG\App\Model\Interfaces\MetricScallarReprezentInterface;
  */
 class MetricScallarReprezentNumber implements MetricScallarReprezentInterface {
     
-    private $currentData;
-    private $previousData;
+    private $reportType;
     
-    public function __construct($currentData, $previousData) {
-        $this->currentData = $currentData;
-        $this->previousData = $previousData;
+    public function __construct($reportType) {
+        $this->reportType = $reportType;
     }
 
     /**
@@ -23,13 +21,17 @@ class MetricScallarReprezentNumber implements MetricScallarReprezentInterface {
     public function convertDataSet() {
         
     }
-
-    public function getCurrentData() {
-        return $this->currentData;
+    
+    public function getCurrentData(){
+        return -1;
+    }
+    
+    public function getPreviousData(){
+        return 1;
     }
 
-    public function getPreviousData() {
-        return $this->previousData;
+    public function getData() {
+        return $this->reportType;
     }
 
 }

@@ -3,15 +3,15 @@
 namespace SBG\tests\App\Model;
 
 use PHPUnit_Framework_TestCase as TestCase;
-use SBG\App\Model\MetricScallarReprezentNumber;
+use SBG\App\Model\MetricScallarReprezentArray;
 
-class MetricScallarReprezentNumberTest extends TestCase {
+class MetricScallarReprezentArrayTest extends TestCase {
 
     /**
      * @test
      */
     public function checkIfReturnedDataIsNotNull(){
-        $msrn = new MetricScallarReprezentNumber(1);
+        $msrn = new MetricScallarReprezentArray(1);
         $this->assertNotNull($msrn->getData());
         
     }
