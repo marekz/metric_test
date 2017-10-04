@@ -16,7 +16,7 @@ class MetricTest extends TestCase {
      */
     public function ifCurrentMetricIsWorstThenPrevious() {
         $metricStatus = new Metric(-1);
-        $status = $metricStatus->getMetricStatus();
+        $status = $metricStatus->presentMetricStatus();
         if ($status == -1) {
             $this->assertEquals(-1, $status);
         } else {
@@ -30,7 +30,7 @@ class MetricTest extends TestCase {
      */
     public function ifCurrentMetricIsBetterThenPrevious() {
         $metricStatus = new Metric(1);
-        $status = $metricStatus->getMetricStatus();
+        $status = $metricStatus->presentMetricStatus();
         if ($status == 1) {
             $this->assertEquals(1, $status);
         } else {
@@ -44,7 +44,7 @@ class MetricTest extends TestCase {
      */
     public function ifCurrentMetricIsEqualThenPrevious(){
         $metricStatus = new Metric(0);
-        $status = $metricStatus->getMetricStatus();
+        $status = $metricStatus->presentMetricStatus();
         if ($status == 0){
             $this->assertEquals(0, $status);
         } elseif ($status == -1) {

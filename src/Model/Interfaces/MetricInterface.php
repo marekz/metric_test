@@ -9,5 +9,8 @@ interface MetricInterface {
 // 2   save current date from source to database
     
 //    public function resultCompare($metric, MetricCompareStrategy $cmpStrategy);
-    public function getMetricStatus();
+    
+    public function getCompareResult();
+    
+    public function presentMetricStatus();
 }
