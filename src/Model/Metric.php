@@ -3,18 +3,28 @@
 namespace SBG\App\Model;
 
 use SBG\App\Model\Interfaces\MetricInterface;
-use SBG\App\Model\MetricCompare;
 
 class Metric implements MetricInterface {
-    
-    private $metricStatus;
 
-    public function presentMetricStatus() {
-        return $this->metricStatus;
-    }
+    public static function presentMetricStatus($status) {
 
-    public function getCompareResult() {
-        $this->metricStatus = new MetricCompare($current, $previous);
+        switch ($status) {
+            case 1:
+                $metricStatus = "BETTER";
+                break;
+
+            case 0:
+                $metricStatus = "BZ";
+                break;
+
+            case -1:
+                $metricStatus = "WORST";
+                break;
+
+            default :$metricStatus = "WRONG DATA!";
+        }
+
+        return $metricStatus;
     }
 
 }

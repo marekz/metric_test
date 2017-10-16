@@ -12,45 +12,42 @@ class MetricTest extends TestCase {
 
     /**
      * @test
-     * Current status is worst then previous "-1"
-     */
-    public function ifCurrentMetricIsWorstThenPrevious() {
-        $metricStatus = new Metric(-1);
-        $status = $metricStatus->presentMetricStatus();
-        if ($status == -1) {
-            $this->assertEquals(-1, $status);
-        } else {
-            $this->assertNotEquals(-1, $status);
-        }
-    }
-
-    /**
-     * @test
-     * Check if cirrent status is better then previous: "1"
+     * Check if cirrent status is better then previous: "BETTER"
      */
     public function ifCurrentMetricIsBetterThenPrevious() {
-        $metricStatus = new Metric(1);
-        $status = $metricStatus->presentMetricStatus();
-        if ($status == 1) {
-            $this->assertEquals(1, $status);
+        $status = Metric::presentMetricStatus(1);
+        if ($status == "BETTER") {
+            $this->assertEquals("BETTER", $status);
         } else {
-            $this->assertNotEquals(1, $status);
+            $this->assertNotEquals("BETTER", $status);
         }
     }
     
     /**
      * @test
-     * Current status is equal then previous: "0"
+     * Current status is equal then previous: "BZ"
      */
     public function ifCurrentMetricIsEqualThenPrevious(){
-        $metricStatus = new Metric(0);
-        $status = $metricStatus->presentMetricStatus();
-        if ($status == 0){
-            $this->assertEquals(0, $status);
-        } elseif ($status == -1) {
-            $this->assertNotEquals(0, $status);
+        $status = Metric::presentMetricStatus(0);
+        if ($status == 'BZ'){
+            $this->assertEquals('BZ', $status);
+        } elseif ($status == 'WORST') {
+            $this->assertNotEquals('WORST', $status);
         } elseif ($status == 1) {
-            $this->assertNotEquals(0, $status);
+            $this->assertNotEquals("BETTER", $status);
+        }
+    }
+
+    /**
+     * @test
+     * Current status is worst then previous "WORST"
+     */
+    public function ifCurrentMetricIsWorstThenPrevious() {
+        $status = Metric::presentMetricStatus(-1);
+        if ($status == "WORST") {
+            $this->assertEquals("WORST", $status);
+        } else {
+            $this->assertNotEquals("WORST", $status);
         }
     }
 }

@@ -2,15 +2,14 @@
 
 namespace SBG\App\Model\Interfaces;
 
-use SBG\App\Model\MetricCompareStrategy;
-
 interface MetricInterface {
-// 1   download current data from source
-// 2   save current date from source to database
-    
-//    public function resultCompare($metric, MetricCompareStrategy $cmpStrategy);
-    
-    public function getCompareResult();
-    
-    public function presentMetricStatus();
+    /**
+     * presentMetricStatus, zwracać powinien informację o statusie ankiety
+     * w zależności od tego jak wyglądają dene z okresu bieżącego i poprzedniego
+     * zwracać powinien jeden ze statusów:
+     *  1: poprawa
+     *  0: bez zmian
+     * -1: pogorszenie statusów
+     */
+    public static  function presentMetricStatus($status);
 }
