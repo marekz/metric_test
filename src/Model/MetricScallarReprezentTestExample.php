@@ -2,28 +2,63 @@
 
 namespace SBG\App\Model;
 
-use SBG\App\Model\Interfaces\MetricScallarReprezentInterface;
-
 /**
- * Convert number to metric accepted format
+ * Factory Abstract class represent every possible metric
  */
-class MetricScallarReprezentArray implements MetricScallarReprezentInterface {
-    
-    private $data;
-    
-    public function __construct($data) {
-        $this->data = $data;
-    }
+abstract class MetricScallarReprezentFactory {
 
     /**
-     * 
+     * Get parameters for metric data from different place
      */
-    public function convertDataSet() {
-        
+    abstract function getMetricParameter();
+}
+
+/**
+ * Factory class get parameters for metric in number format
+ */
+class MetricScallarReprezentNumberFactory extends MetricScallarReprezentFactory {
+
+    public function getMetricParameter() {
+        new NumberFormatParameter();
     }
 
-    public function getData() {
-        return $this->data;
+}
+
+/**
+ * Abstract class for any metric parameters
+ */
+abstract class MetricParameter {
+
+    abstract function getCurrentMetricData();
+
+    abstract function getPreviousMetricData();
+}
+
+/**
+ * Get metric parameter in number format
+ */
+class NumberFormatParameter extends \SBG\App\Model\MetricParameter {
+
+    public function getCurrentMetricData() {
+        return 10;
     }
 
+    public function getPreviousMetricData() {
+        return 9;
+    }
+
+}
+
+$newMetric = 10;
+$type = gettype($newMetric);
+
+var_dump($type);
+
+switch ($type) {
+    case "integer":
+        new NumberFormatParameter();
+        break;
+    
+    default:
+        echo "Wrong parameters";
 }

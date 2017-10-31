@@ -14,14 +14,14 @@ class Metric implements MetricInterface {
                 break;
 
             case 0:
-                $metricStatus = "BZ";
+                $metricStatus = "NO CHANGE";
                 break;
 
             case -1:
-                $metricStatus = "WORST";
+                $metricStatus = "WEAKNESS";
                 break;
 
-            default :$metricStatus = "WRONG DATA!";
+            default :$metricStatus = "ERROR DATA!";
         }
 
         return $metricStatus;

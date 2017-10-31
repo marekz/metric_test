@@ -2,28 +2,74 @@
 
 namespace SBG\App\Model;
 
-use SBG\App\Model\Interfaces\MetricScallarReprezentInterface;
-
 /**
- * Convert number to metric accepted format
+ * Abstract class represent every possible metric format
  */
-class MetricScallarReprezentArray implements MetricScallarReprezentInterface {
-    
-    private $data;
-    
-    public function __construct($data) {
-        $this->data = $data;
-    }
+abstract class MetricScallarReprezentFactory {
 
     /**
-     * 
+     * Get parameters for metric statistics from different place
      */
-    public function convertDataSet() {
+    abstract function getMetricParameter();
+}
+
+/**
+ * Class reprezent numeber format 
+ */
+class MetricScallarReprezentNumberFactory extends MetricScallarReprezentFactory {
+
+    public function getMetricParameter() {
         
     }
 
-    public function getData() {
-        return $this->data;
-    }
-
 }
+
+/**
+ * Abstract class form number parameters
+ */
+abstract class NumericFormatParameters {
+
+    abstract function getNumericFormatData();
+}
+
+/**
+ * Abstract class form string parameters
+ */
+abstract class StringFormatParameters {
+
+    abstract function getStringFormatData();
+}
+
+
+/**
+ * Abstract class form array parameters
+ */
+abstract class ArrayFormatParameters {
+
+    abstract function getArrayFormatData();
+}
+
+
+
+
+/**
+ * Class reprezent string format 
+ */
+//class MetricScallarReprezentStringFactory extends MetricScallarReprezentFactory {
+//
+//    public function getMetricParameter() {
+//        
+//    }
+//
+//}
+
+/**
+ * Class reprezent arrays format 
+ */
+//class MetricScallarReprezentArraysFactory extends MetricScallarReprezentFactory {
+//
+//    public function getMetricParameter() {
+//        
+//    }
+//
+//}
